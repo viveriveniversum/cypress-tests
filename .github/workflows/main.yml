@@ -3,24 +3,18 @@ on:
   pull_request:
     branches:
       - main
-jobs:
-  job_id: ${{secrets.GCP_PROJECT_ID}}
-    # ...
-
-    # Add "id-token" with the intended permissions.
-    permissions:
-      contents: 'read'
-      id-token: 'write'
-
-    steps:
-    # actions/checkout MUST come before auth
-    - uses: 'actions/checkout@v3'
-
-    - id: 'auth'
-      name: 'Authenticate to Google Cloud'
-      uses: 'google-github-actions/auth@v1'
-      with:
-          workload_identity_provider: ${{secrets.WORKLOAD_IDENTITY_PROVIDER_ID}}
-          service_account: ${{secrets.GCP_SERVICE_ACCOUNT}}
+  jobs:
+    test_GCP:
+      permissions:
+        contents: read
+        id-token: write
+      steps:
+        - uses: actions/checkout@v3
+        - id: auth
+          name: Authenticate to Google Cloud
+          uses: google-github-actions/auth@v1
+          with:
+            workload_identity_provider: ${{secrets.WORKLOAD_IDENTITY_PROVIDER_ID}}
+            service_account: ${{secrets.GCP_SERVICE_ACCOUNT}}
 
     # ... further steps are automatically authenticated
