@@ -17,6 +17,8 @@ jobs:
         with:
           workload_identity_provider: ${{secrets.WORKLOAD_IDENTITY_PROVIDER_ID}}
           service_account: ${{secrets.GCP_SERVICE_ACCOUNT}}
+      - name: Set GCP_SERVICE_ACCOUNT environment variable
+        run: echo "::set-env name=GCP_SERVICE_ACCOUNT::${{ secrets.GCP_SERVICE_ACCOUNT }}"
       - name: Print GCP_SERVICE_ACCOUNT
         run: |
           echo "GCP_SERVICE_ACCOUNT: ${{ secrets.GCP_SERVICE_ACCOUNT }}"
