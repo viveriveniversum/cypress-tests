@@ -18,5 +18,5 @@ jobs:
           workload_identity_provider: ${{secrets.WORKLOAD_IDENTITY_PROVIDER_ID}}
           service_account: ${{secrets.GCP_SERVICE_ACCOUNT}}
       - name: List GCP services
-        run: gcloud services list
+        run: gcloud auth list
     # ... further steps are automatically authenticated
