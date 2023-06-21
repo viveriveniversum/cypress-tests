@@ -30,8 +30,7 @@ on:
 #         run: |
 #           gcloud auth login --update-workload-identity-binding-flag=${{ secrets.WORKLOAD_IDENTITY_PROVIDER_ID }}
 
-#       - name: Check authenticated user
-#         run: gcloud auth list
+
 jobs:
   test-GCP:
     runs-on: ubuntu-latest
@@ -50,3 +49,5 @@ jobs:
       with:
         workload_identity_provider: 'projects/123456789/locations/global/workloadIdentityPools/my-pool/providers/my-provider'
         service_account: 'my-service-account@my-project.iam.gserviceaccount.com'
+      - name: Check authenticated user
+        run: gcloud auth list
