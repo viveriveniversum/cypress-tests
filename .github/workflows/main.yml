@@ -1,5 +1,10 @@
+name: List services in GCP
+on:
+  pull_request:
+    branches:
+      - main
 jobs:
-  job_id:
+  job_id: ${{secrets.GCP_PROJECT_ID}}
     # ...
 
     # Add "id-token" with the intended permissions.
