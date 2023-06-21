@@ -18,14 +18,14 @@ jobs:
           workload_identity_provider: ${{ secrets.WORKLOAD_IDENTITY_PROVIDER_ID }}
           service_account: ${{ secrets.GCP_SERVICE_ACCOUNT }}
 
-      - name: Authenticate with Google Cloud
-        run: gcloud auth activate-service-account --key-file=${{ secrets.GCP_SERVICE_ACCOUNT }}
-      - name: Configure gcloud with project ID
-        run: gcloud config set project ${{ secrets.GCP_PROJECT_ID }}
+#       - name: Authenticate with Google Cloud
+#         run: gcloud auth activate-service-account --key-file=${{ secrets.GCP_SERVICE_ACCOUNT }}
+#       - name: Configure gcloud with project ID
+#         run: gcloud config set project ${{ secrets.GCP_PROJECT_ID }}
         
-      - name: Authenticate with Workload Identity Provider
-        run: |
-          gcloud auth login --update-workload-identity-binding-flag=${{ secrets.WORKLOAD_IDENTITY_PROVIDER_ID }}
+#       - name: Authenticate with Workload Identity Provider
+#         run: |
+#           gcloud auth login --update-workload-identity-binding-flag=${{ secrets.WORKLOAD_IDENTITY_PROVIDER_ID }}
 
-      - name: Check authenticated user
-        run: gcloud auth list
+#       - name: Check authenticated user
+#         run: gcloud auth list
