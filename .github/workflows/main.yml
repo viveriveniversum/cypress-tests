@@ -1,4 +1,4 @@
-name: List services in GCP
+name: List Config in GCP
 on:
   push:
     branches:
@@ -20,11 +20,11 @@ jobs:
           workload_identity_provider: projects/291065660416/locations/global/workloadIdentityPools/github-actions-pool/providers/github-provider
           service_account: github-actions-service-account@onur-workload-identity-pools.iam.gserviceaccount.com
           
-         # Install gcloud, `setup-gcloud` automatically picks up authentication from `auth`.
+      # Install gcloud, `setup-gcloud` automatically picks up authentication from `auth`.
       - name: 'Set up Cloud SDK'
         uses: 'google-github-actions/setup-gcloud@v1'
 
-    # Now you can run gcloud commands authenticated as the impersonated service account.
+      # Now you can run gcloud commands authenticated as the impersonated service account.
       - id: 'gcloud'
         name: 'gcloud'
         run: |-
