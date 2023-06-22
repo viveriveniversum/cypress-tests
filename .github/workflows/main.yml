@@ -77,6 +77,8 @@ jobs:
           service_account: ${{ secrets.GCP_SERVICE_ACCOUNT }}
     - id: 'gcloud'
       name: 'gcloud'
+      run: gcloud config set project onur-hub
+    - name: auth 
       run: |-
         gcloud auth login --brief --cred-file="${{ steps.auth.outputs.credentials_file_path }}"
         gcloud services list
