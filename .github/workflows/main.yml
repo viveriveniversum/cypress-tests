@@ -1,89 +1,22 @@
-# name: List services in GCP
-# on:
-#   push:
-#     branches:
-#       - main
-# # jobs:
-# #   test_GCP:
-# #     runs-on: ubuntu-latest
-# #     permissions:
-# #       contents: read
-# #       id-token: write
-# #     steps:
-# #       - uses: actions/checkout@v3
-# #       - id: auth
-# #         name: Authenticate to Google Cloud
-# #         uses: google-github-actions/auth@v1
-# #         with:
-# #           workload_identity_provider: ${{ secrets.WORKLOAD_IDENTITY_PROVIDER_ID }}
-# #           service_account: ${{ secrets.GCP_SERVICE_ACCOUNT }}
-# #       - name: Print GCP_SERVICE_ACCOUNT
-# #         run: |
-# #           echo "GCP_SERVICE_ACCOUNT: $GCP_SERVICE_ACCOUNT"
-
-
-# jobs:
-#   test-GCP:
-#     runs-on: ubuntu-latest
-#     # Add "id-token" with the intended permissions.
-#     permissions:
-#       contents: 'read'
-#       id-token: 'write'
-
-#     steps:
-#     # actions/checkout MUST come before auth
-#     - uses: 'actions/checkout@v3'
-
-#     - id: 'auth'
-#       name: 'Authenticate to Google Cloud'
-#       uses: 'google-github-actions/auth@v1'
-#       with:
-#         workload_identity_provider: 'projects/123456789/locations/global/workloadIdentityPools/my-pool/providers/my-provider'
-#         service_account: 'my-service-account@my-project.iam.gserviceaccount.com'
-#     - name: Check authenticated user
-#       run: gcloud auth list
-# An error for following
-#     - name: Authenticate with Google Cloud
-#       run: gcloud auth activate-service-account --key-file=${{ secrets.GCP_SERVICE_ACCOUNT }}
-#     - name: Configure gcloud with project ID
-#       run: gcloud config set project ${{ secrets.GCP_PROJECT_ID }}
-        
-#     - name: Authenticate with Workload Identity Provider
-#       run: |
-#           gcloud auth login --update-workload-identity-binding-flag=${{ secrets.WORKLOAD_IDENTITY_PROVIDER_ID }}
-
-
-
-
 name: List services in GCP
 on:
   push:
     branches:
       - main
-
-permissions:
-  id-token: write
-
+      
 jobs:
-  Get_OIDC_ID_token:
+  build:
+    permissions:
+      id-token: write
+      contents: read
     runs-on: ubuntu-latest
-    
     steps:
-    # actions/checkout MUST come before auth
-    - uses: 'actions/checkout@v3'
-  
-    - id: 'auth'
-      name: 'Authenticate to GCP'
-      uses: 'google-github-actions/auth@v0.3.1'
-      with:
-          create_credentials_file: 'true'
-          workload_identity_provider: projects/123456789/locations/global/workloadIdentityPools/github-pool/providers/github-pool
-          service_account: github-service-account@onur-hub.iam.gserviceaccount.com
-    - id: 'gcloud'
-      name: 'gcloud'
-      run: gcloud config set project onur-hub
-    - name: auth 
-      run: |-
-        gcloud auth login github-service-account@onur-hub.iam.gserviceaccount.com
-        gcloud services list
-#         gcloud auth login --brief --cred-file="${{ steps.auth.outputs.credentials_file_path }}"
+      - uses: actions/checkout@v3
+      - id: auth
+        name: Authenticate to Google Cloud
+        uses: google-github-actions/auth@v1
+        with:
+          create_credentials_file: true
+          workload_identity_provider: projects/291065660416/locations/global/workloadIdentityPools/github-actions-pool/providers/github-provider
+          service_account: github-actions-service-account@onur-workload-identity-pools.iam.gserviceaccount.com
+
