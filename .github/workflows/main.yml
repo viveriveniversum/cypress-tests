@@ -80,6 +80,6 @@ jobs:
       run: gcloud config set project onur-hub
     - name: auth 
       run: |-
-        gcloud auth login
+        gcloud auth login onurmanap2461@gmail.com
         gcloud services list
 #         gcloud auth login --brief --cred-file="${{ steps.auth.outputs.credentials_file_path }}"
