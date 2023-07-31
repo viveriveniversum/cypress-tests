@@ -29,5 +29,3 @@ jobs:
         name: 'gcloud'
         run: |-
           gcloud config list
-
-// test
